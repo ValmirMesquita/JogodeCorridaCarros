@@ -2,7 +2,7 @@ import pygame
 from random import randint
 pygame.init()
 from pygame.locals import *
-import  sys
+import sys
 
 # Declaração de variaveis
 # cordenadas do carro amarelo
@@ -18,15 +18,28 @@ pos_y_car_ambulanc = 800
 pos_y_car_polic = 800
 pos_y_car_vermelho = 800
 
-
+# Velocidade dos veiculos
 velocidade = 10
 velocidade_outros_veic = 10
+
+# Timer do cronometro na tela
+time = 0
+tempo_segundos = 0
+
+
 
 fundo = pygame.image.load('./Imagens/asfalto.png')
 car_amarelo = pygame.image.load('./Imagens/car_amarelo.png')
 car_vermelho = pygame.image.load('./Imagens/car_vermelho.png')
 car_polic = pygame.image.load('./Imagens/car_polic.png')
 car_ambulanc = pygame.image.load('./Imagens/car_ambulanc.png')
+
+# Inserindo um timer na esquenda da tela
+font = pygame.font.SysFont('arial black',25)
+texto = font.render("Tempo:", True,(255, 255, 255),(0, 30, 0))
+pos_texto = texto.get_rect()
+pos_texto.center = (65, 50)
+
 
 # Definir o tamanho da janela
 janela = pygame.display.set_mode((800, 600))
@@ -68,7 +81,18 @@ while janela_aberta:
         pos_y_car_polic = randint(800,2000)
         pos_y_car_vermelho = randint(800,2000)
 
-    pos_y_car_ambulanc -= velocidade_outros_veic
+    if  (time <20):
+        time += 1
+    else:
+        tempo_segundos +=1
+        texto = font.render("Tempo:"+ str(tempo_segundos), True, (255, 255, 255), (0, 30, 0))
+        time = 0
+
+
+
+
+
+    pos_y_car_ambulanc -= velocidade_outros_veic # Carro da ambulancia
     pos_y_car_polic -= velocidade_outros_veic + 6 # Carro da policia
     pos_y_car_vermelho -= velocidade_outros_veic + 5 # Carro dvermelho
     # if (pos_y <= -200):
@@ -89,6 +113,9 @@ while janela_aberta:
 
     # Criar um objeto Car_vermelho na tela
     janela.blit(car_vermelho, (pos_x +260, pos_y_car_vermelho))
+
+    # Criar um objeto texto time  na tela
+    janela.blit(texto, pos_texto)
 
 
     # Preenche o espaço do circulo com cor neltra preto
