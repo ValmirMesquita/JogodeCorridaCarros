@@ -6,7 +6,7 @@ import  sys
 
 # Declaração de variaveis
 # cordenadas do carro amarelo
-x = 375  # valor maximo 545 e valor minimo 200
+x = 375  # valor maximo 545 e valor minimo 215
 # cordenadas do carro amarelo
 y = 175
 
@@ -56,11 +56,11 @@ while janela_aberta:
         y += velocidade
 
     # Se atecla seta para direita for clicada
-    if comandos[pygame.K_RIGHT]:
+    if comandos[pygame.K_RIGHT] and x <= 540:
         x += velocidade
 
     # Se atecla seta para esquerda for clicada
-    if comandos[pygame.K_LEFT]:
+    if comandos[pygame.K_LEFT] and x >= 215:
         x -= velocidade
 
     if (pos_y_car_ambulanc  <= -180) and (pos_y_car_polic <= -180) and (pos_y_car_vermelho <= -180):
