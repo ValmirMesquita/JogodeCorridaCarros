@@ -76,22 +76,27 @@ while janela_aberta:
     if comandos[pygame.K_LEFT] and x >= 215:
         x -= velocidade
 
-    if (pos_y_car_ambulanc  <= -180) and (pos_y_car_polic <= -180) and (pos_y_car_vermelho <= -180):
-        pos_y_car_ambulanc  = randint(800,2000)
-        pos_y_car_polic = randint(800,2000)
-        pos_y_car_vermelho = randint(800,2000)
+    # Linha correspondente a colisão dos carros
+    #if (x +80 > pos_x and y - 180 > pos_x):
 
-    if  (time <20):
+    # Linha correspondente a colisão dos carros
+
+    if (pos_y_car_ambulanc  <= -80):
+        pos_y_car_ambulanc  = randint(800,1000)
+    if (pos_y_car_polic <= -80):
+        pos_y_car_polic = randint(1200,2000)
+    if (pos_y_car_vermelho <= -80):
+        pos_y_car_vermelho = randint(2200,3000)
+
+    # Linha referente ao Timer
+    if (time <20):
         time += 1
     else:
         tempo_segundos +=1
         texto = font.render("Tempo:"+ str(tempo_segundos), True, (255, 255, 255), (0, 30, 0))
         time = 0
 
-
-
-
-
+    # Linha referente a velocidade dos 3 carros
     pos_y_car_ambulanc -= velocidade_outros_veic # Carro da ambulancia
     pos_y_car_polic -= velocidade_outros_veic + 6 # Carro da policia
     pos_y_car_vermelho -= velocidade_outros_veic + 5 # Carro dvermelho
